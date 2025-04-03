@@ -32,7 +32,7 @@ try:
     sp.SetVelocity(hc, 0, 500, sp.SYNCHRONOUS, True)
     sp.SetAcceleration(hc, 0, 50, sp.SYNCHRONOUS, True)
     sp.SetDeceleration(hc, 0, 50, sp.SYNCHRONOUS, True)
-    sp.SetJerk(hc, 0, 100, sp.SYNCHRONOUS, True)
+    sp.SetJerk(hc, 0, 500, sp.SYNCHRONOUS, True)
     sp.SetKillDeceleration(hc, 0, 10000, sp.SYNCHRONOUS, True)
     sp.SetFPosition(hc, sp.Axis.ACSC_AXIS_0, 0, failure_check=True)
 except Exception as e:
@@ -268,7 +268,14 @@ root.rowconfigure(1, weight=1)
 title_frame = tk.Frame(root)
 title_frame.grid(row=0, column=0, columnspan=2, pady=5, sticky="ew")
 tk.Label(title_frame, text="MOTION CONTROL", font=("Arial", 20, "bold")).pack(side=tk.LEFT, padx=10)
-tk.Label(title_frame, text="[LOGO]", font=("Arial", 16)).pack(side=tk.LEFT)
+# Logo Image (Rightmost Corner)
+logo_image = Image.open("E:\ACS motion Controller\python code\code\download.png")  # Adjust the path
+logo_image = logo_image.resize((120, 120))  # Resize if necessary
+logo_photo = ImageTk.PhotoImage(logo_image)
+
+logo_label = tk.Label(title_frame, image=logo_photo)
+logo_label.image = logo_photo  # Keep a reference
+logo_label.pack(side=tk.RIGHT, padx=10)
 
 control_frame = tk.LabelFrame(root, text="Control Panel", padx=5, pady=5)
 control_frame.grid(row=1, column=0, padx=5, pady=5, sticky="nsw")
